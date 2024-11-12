@@ -3,7 +3,7 @@ class script(object):
 𝖨𝗆 𝖺𝗇 𝖺𝗎𝗍𝗈 𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍 𝗐𝗁𝗂𝖼𝗁 𝖼𝖺𝗇 𝗉𝗋𝗈𝗏𝗂𝖽𝖾 𝗆𝗈𝗏𝗂𝖾𝗌 𝗂𝗇 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉𝗌.
 + 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 + 𝖺𝗇𝖽 𝗉𝗋𝗈𝗆𝗈𝗍𝖾 𝗆𝖾 𝖺𝗌 𝖺𝖽𝗆𝗂𝗇 𝗍𝗈 𝗅𝖾𝗍 𝗆𝖾 𝗀𝖾𝗍 𝗂𝗇 𝖺𝖼𝗍𝗂𝗈𝗇.
 
-©️ Maintained By @im_goutham_josh"""
+©️ Maintained By @Vega movies"""
     HELP_TXT = """
     🙋🏻‍♂️   Hellooo  {} 🤓
 
@@ -22,16 +22,16 @@ class script(object):
 ○ Dont Spam Me...🙂
 """
     ABOUT_TXT = """<b>◎ Nᴀᴍᴇ: ᴋᴜᴛᴛᴜ ʙᴏᴛ™
-◎ Cʀᴇᴀᴛᴏʀ: <a href=https://t.me/wudixh13>Goutham SER</a>
+◎ Cʀᴇᴀᴛᴏʀ: <a href=https://t.me/LazyIron>Iron Man</a> & <a href=https://t.me/Princerxyz>Price Ahir</a>
 ◎ Lᴀɴɢᴜᴀɢᴇ: Pʏᴛʜᴏɴ 3
 ◎ Dᴀᴛᴀ Bᴀsᴇ: Mᴏɴɢᴏ DB
 ◎ Bᴏᴛ Sᴇʀᴠᴇʀ: KoYeb</b>"""
     SOURCE_TXT = """<b>NOTE:</b>
 - ᴋᴜᴛᴛᴜ ʙᴏᴛ™ is a open source project. 
-- Source - <ahref=https://github.com/GouthamSER>Click Here😂</a>
+- Source - <a href=https://github.com/>Click Here😂</a>
 
 <b>DEVS:</b>
-- <a href=https://t.me/wudixh13/4>Gᴏᴜᴛʜᴀᴍ Sᴇʀ🌈</a>"""
+- <a href=https://t.me/LazyIron>Iron Man</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 - Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
 <b>NOTE:</b>
@@ -119,16 +119,13 @@ Added By - {}
 
     CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
 FɪʟᴇSɪᴢᴇ : {file_size}
-
-╔════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-▫️<a href=https://t.me/wudixh> ᴇʟᴅᴏʀᴀᴅᴏ </a>
-╚════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</b>"""
+"""
 
     
     RESTART_GC_TXT = """
 <b>𝖡𝗈𝗍 𝖱𝖾𝗌𝗍𝖺𝗋𝗍𝖾𝖽 !</b>
 Kuttu Bot
-**@im_goutham_josh**
+**@Vega Movies**
 
 📅 𝖣𝖺𝗍𝖾 : <code>{}</code>
 ⏰ 𝖳𝗂𝗆𝖾 : <code>{}</code>
@@ -139,7 +136,7 @@ Kuttu Bot
 ID - <code>{}</code>
 Name - {}
 """
-    SPOLL_NOT_FND="""Eᴅᴀᴀ Mᴏɴᴇʜ🤚🏻
+    SPOLL_NOT_FND="""Sorry Buddy,
 I couldn't find anything related to your request. 😵
 Try reading the instruction below 👇🏼
     """

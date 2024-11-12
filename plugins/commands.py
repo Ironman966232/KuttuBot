@@ -8,8 +8,8 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
-from utils import get_settings, get_size, is_req_subscribed, is_subscribed, save_group_settings, temp
+from info import MAIN_CHNL_USRNM, CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
+from utils import get_settings, get_size, is_req_subscribed, save_group_settings, temp
 from database.connections_mdb import active_connection
 import re
 import json
@@ -23,7 +23,7 @@ async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [
             [
-                InlineKeyboardButton('🤖 Movie𝚄𝚙𝚍𝚊𝚝𝚎𝚜', url='https://t.me/wudixh')
+                InlineKeyboardButton('🤖 Movie𝚄𝚙𝚍𝚊𝚝𝚎𝚜', url=f'https://t.me/{MAIN_CHNL_USRNM}')
             ],
             [
                 InlineKeyboardButton('ℹ️ 𝙷𝚎𝚕𝚙', url=f"https://t.me/{temp.U_NAME}?start=help"),

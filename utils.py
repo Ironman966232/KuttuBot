@@ -41,32 +41,53 @@ class temp(object):
     SETTINGS = {}
 
 async def is_req_subscribed(bot, query):
+    # Check if the user has a join request in the database
     if await db.find_join_req(query.from_user.id):
         return True
+
+    # Ensure that AUTH_CHANNEL is correctly defined
+    if not AUTH_CHANNEL:
+        logger.error("AUTH_CHANNEL is not set. Please define it in the environment variables.")
+        return False
+
+    # Log the AUTH_CHANNEL value for debugging
+    logger.debug(f"AUTH_CHANNEL set to: {AUTH_CHANNEL}")
+
+    # Test if AUTH_CHANNEL is a valid chat ID by trying to get chat info
     try:
+        chat_info = await bot.get_chat(AUTH_CHANNEL)
+        logger.debug(f"Successfully retrieved chat info for AUTH_CHANNEL: {chat_info.title}")
+    except PeerIdInvalid:
+        # Log an error if AUTH_CHANNEL is invalid
+        logger.error(f"Invalid peer ID: AUTH_CHANNEL '{AUTH_CHANNEL}' is not recognized as a valid chat.")
+        return False
+    except Exception as e:
+        logger.exception(f"Error while testing AUTH_CHANNEL validity: {e}")
+        return False
+
+    try:
+        # Attempt to retrieve the user as a member of AUTH_CHANNEL
         user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
     except UserNotParticipant:
+        # Handle the case where the user is not a participant
         pass
+    except PeerIdInvalid:
+        # Handle invalid peer ID error
+        logger.error(f"Invalid peer ID: AUTH_CHANNEL '{AUTH_CHANNEL}' is not a valid chat ID or username.")
+        return False
     except Exception as e:
-        logger.exception(e)
+        # Log any other exceptions for debugging purposes
+        logger.exception(f"Exception in is_req_subscribed: {e}")
+        return False
     else:
-        if user.status != enums.ChatMemberStatus.BANNED:
-            return True
-
-    return False
-
-async def is_subscribed(bot, query):
-    try:
-        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
-    except UserNotParticipant:
-        pass
-    except Exception as e:
-        logger.exception(e)
-    else:
+        # Check if the user is not banned (kicked)
         if user.status != 'kicked':
             return True
 
+    # Return False if the user is not subscribed or any error occurs
     return False
+
+    
 
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
