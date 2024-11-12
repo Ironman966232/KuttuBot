@@ -2,7 +2,7 @@ import re
 from os import environ
 from Script import script
 from time import time
-from dotenv import load_dotenv, dotenv_values
+#from dotenv import load_dotenv, dotenv_values
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -13,7 +13,7 @@ def is_enabled(value, default):
     else:
         return default
 
-load_dotenv('config.env', override=True)
+#load_dotenv('config.env', override=True)
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
