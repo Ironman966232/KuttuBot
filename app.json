@@ -70,7 +70,7 @@
     },
     "addons": [],
     "buildpacks": [{
-        "url": "heroku/python"
+        "url": "Scalingo/python-buildpack"
     }],
     "formation": {
         "worker": {
