@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/GouthamSER/KuttuBot",
-    "repository": "https://github.com/GouthamSER/KuttuBot",
+    "website": "https://github.com/Ironman966232/KuttuBot",
+    "repository": "https://github.com/Ironman966232/KuttuBot",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
@@ -70,7 +70,7 @@
     },
     "addons": [],
     "buildpacks": [{
-        "url": "Scalingo/python-buildpack"
+        "url": "https://github.com/Scalingo/python-buildpack"
     }],
     "formation": {
         "worker": {
