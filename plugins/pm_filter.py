@@ -9,7 +9,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, LOG_CHANNEL
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -136,6 +136,25 @@ async def advantage_spoll_choker(bot, query):
             await auto_filter(bot, query, k)
         else:
             k = await query.message.edit(script.MOV_NT_FND)#script change
+            # REQUEST CONTENT LOG
+            reqstr1 = query.from_user.id if query.from_user else 0
+            reqstr = await bot.get_users(reqstr1)
+            keyboard = [
+                [
+                    InlineKeyboardButton("✔️UPLOADED✔️", callback_data="uploaded"),
+                    InlineKeyboardButton("❌Not Available❌", callback_data="not_available"),
+                ],
+                [
+                    InlineKeyboardButton("📤Send Message User📤", callback_data="send_message_user")
+                ]
+            ]
+            message_text = f"""<b>  🎐🫧🦋🧿💠🌀\n\n# Requested Content\n\n🎬User Query:</b> {k.reply_to_message.text}\n\n🎥Spell Query:</b> {movie}\n\n<b>👥USER ID:</b> {reqstr.id}\n\n<b>⏱️Requested Time:</b> {k.date}\n\n<b>  🎐🫧🦋🧿💠🌀</b>"""
+            await bot.send_message(
+                chat_id=LOG_CHANNEL,
+                text=message_text,
+                reply_markup=InlineKeyboardMarkup(keyboard)
+            )
+            print(f"This is return query: {k.reply_to_message.text}")
             await asyncio.sleep(10)
             await k.delete()
 
@@ -622,8 +641,9 @@ async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
-        if message.text.startswith("/"): return  # ignore commands
-        if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
+        if message.text.startswith("/"): 
+            return  # ignore commands
+        if re.findall(r"((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
             return
         if 2 < len(message.text) < 100:
             search = message.text

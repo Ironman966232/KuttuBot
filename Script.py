@@ -3,7 +3,7 @@ class script(object):
 𝖨𝗆 𝖺𝗇 𝖺𝗎𝗍𝗈 𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍 𝗐𝗁𝗂𝖼𝗁 𝖼𝖺𝗇 𝗉𝗋𝗈𝗏𝗂𝖽𝖾 𝗆𝗈𝗏𝗂𝖾𝗌 𝗂𝗇 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉𝗌.
 + 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 + 𝖺𝗇𝖽 𝗉𝗋𝗈𝗆𝗈𝗍𝖾 𝗆𝖾 𝖺𝗌 𝖺𝖽𝗆𝗂𝗇 𝗍𝗈 𝗅𝖾𝗍 𝗆𝖾 𝗀𝖾𝗍 𝗂𝗇 𝖺𝖼𝗍𝗂𝗈𝗇.
 
-©️ Maintained By @Vega movies"""
+©️ Maintained By @Vegamovies_orignal"""
     HELP_TXT = """
     🙋🏻‍♂️   Hellooo  {} 🤓
 
@@ -118,7 +118,7 @@ Added By - {}
     RESULT_TXT="""Eᴅᴀᴀ Mᴏɴᴇʜ I Fᴏᴜɴᴅ Iɴ Mʏ Dʙ Fᴏʀ Yᴏᴜʀ Qᴜᴇʀʏ {}"""
 
     CUSTOM_FILE_CAPTION = """<b>📂Fɪʟᴇɴᴀᴍᴇ : {file_name}
-FɪʟᴇSɪᴢᴇ : {file_size}
+FɪʟᴇSɪᴢᴇ : {file_size}</b>
 """
 
     
@@ -167,7 +167,7 @@ Try reading the instruction below 👇🏼
     OLD_MES=""" Eᴅᴀᴀ Mᴏɴᴇʜ 𝐘𝐨𝐮 𝐚𝐫𝐞 𝐮𝐬𝐢𝐧𝐠 𝐨𝐧𝐞 𝐨𝐟 𝐦𝐲 𝐨𝐥𝐝 𝐦𝐞𝐬𝐬𝐚𝐠𝐞𝐬🤔, 𝐩𝐥𝐞𝐚𝐬𝐞 𝐬𝐞𝐧𝐝 𝐭𝐡𝐞 𝐫𝐞𝐪𝐮𝐞𝐬𝐭 𝐚𝐠𝐚𝐢𝐧"""
     
     MOV_NT_FND="""<b>Eᴅᴀᴀ Mᴏɴᴇʜ Tʜɪs Mᴏᴠɪᴇ Is Nᴏᴛ Yᴇᴛ Rᴇᴀʟᴇsᴇᴅ Oʀ Aᴅᴅᴇᴅ Tᴏ DB</b>
-Report To ADMIN - @im_goutham_josh
+Report To ADMIN -
 """
     RESTART_TXT = """
 <b><u>𝖡𝗈𝗍 𝖱𝖾𝗌𝗍𝖺𝗋𝗍𝖾𝖽 ✅</u></b>"""
