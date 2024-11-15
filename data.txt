@@ -137,3 +137,126 @@ This is else K: {
     "invert_media": false,
     "outgoing": true
 }
+
+this is uploaded query: {
+    "_": "CallbackQuery",
+    "id": "5275318764027555291",
+    "from_user": {
+        "_": "User",
+        "id": 1228255863,
+        "is_self": false,
+        "is_contact": false,
+        "is_mutual_contact": false,
+        "is_deleted": false,
+        "is_bot": false,
+        "is_verified": false,
+        "is_restricted": false,
+        "is_scam": false,
+        "is_fake": false,
+        "is_support": false,
+        "is_premium": false,
+        "is_contacts_only": false,
+        "is_bot_business": false,
+        "first_name": "Iron",
+        "last_name": "Man",
+        "status": "UserStatus.RECENTLY",
+        "username": "LazyIron",
+        "language_code": "en",
+        "dc_id": 5,
+        "photo": {
+            "_": "ChatPhoto",
+            "small_file_id": "AQADBQADYbIxGzC9SVcAEAIAA3eyNUkABKMzFV4-_hgzAAQeBA",
+            "small_photo_unique_id": "AgADYbIxGzC9SVc",
+            "big_file_id": "AQADBQADYbIxGzC9SVcAEAMAA3eyNUkABKMzFV4-_hgzAAQeBA",
+            "big_photo_unique_id": "AgADYbIxGzC9SVc",
+            "has_animation": false,
+            "is_personal": false
+        }
+    },
+    "chat_instance": "-7477197113084466260",
+    "message": {
+        "_": "Message",
+        "id": 3052,
+        "date": "2024-11-15 06:16:13",
+        "chat": {
+            "_": "Chat",
+            "id": -1001968931458,
+            "type": "ChatType.CHANNEL",
+            "is_verified": false,
+            "is_restricted": false,
+            "is_creator": false,
+            "is_scam": false,
+            "is_fake": false,
+            "is_forum": false,
+            "is_join_request": false,
+            "is_join_to_send": false,
+            "is_slowmode_enabled": false,
+            "title": "🔥🔥AI Log Channel",
+            "has_protected_content": false
+        },
+        "mentioned": false,
+        "scheduled": false,
+        "from_scheduled": false,
+        "edit_hide": false,
+        "has_protected_content": false,
+        "text": "🎐🫧🦋🧿💠🌀\n\n# Requested Content\n\n🎬User Query: Panther\n\n🎥Spell Query: Black Panther\n\n👥USER ID: 1228255863\n\n⏱️Requested Time: 2024-11-15 06:16:10\n\n  🎐🫧🦋🧿💠🌀",
+        "entities": [
+            {
+                "_": "MessageEntity",
+                "type": "MessageEntityType.BOLD",
+                "offset": 0,
+                "length": 48
+            },
+            {
+                "_": "MessageEntity",
+                "type": "MessageEntityType.BOLD",
+                "offset": 88,
+                "length": 10
+            },
+            {
+                "_": "MessageEntity",
+                "type": "MessageEntityType.BOLD",
+                "offset": 111,
+                "length": 17
+            },
+            {
+                "_": "MessageEntity",
+                "type": "MessageEntityType.BOLD",
+                "offset": 150,
+                "length": 14
+            }
+        ],
+        "invert_media": false,
+        "views": 1,
+        "forwards": 0,
+        "outgoing": true,
+        "reply_markup": {
+            "_": "InlineKeyboardMarkup",
+            "inline_keyboard": [
+                [
+                    {
+                        "_": "InlineKeyboardButton",
+                        "text": "✔️UPLOADED✔️",
+                        "callback_data": "uploaded#1228255863#Black Panther",
+                        "requires_password": false
+                    },
+                    {
+                        "_": "InlineKeyboardButton",
+                        "text": "❌Not Available❌",
+                        "callback_data": "not_available",
+                        "requires_password": false
+                    }
+                ],
+                [
+                    {
+                        "_": "InlineKeyboardButton",
+                        "text": "📤Send Message User📤",
+                        "callback_data": "send_message_user",
+                        "requires_password": false
+                    }
+                ]
+            ]
+        }
+    },
+    "data": "uploaded#1228255863#Black Panther"
+}

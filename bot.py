@@ -35,9 +35,6 @@ from aiohttp import web as webserver
 PORT_CODE = environ.get("PORT", "8080")
 
 
-
-
-
 class Bot(Client):
 
     def __init__(self):

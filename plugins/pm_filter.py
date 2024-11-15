@@ -141,8 +141,8 @@ async def advantage_spoll_choker(bot, query):
             reqstr = await bot.get_users(reqstr1)
             keyboard = [
                 [
-                    InlineKeyboardButton("✔️UPLOADED✔️", callback_data="uploaded"),
-                    InlineKeyboardButton("❌Not Available❌", callback_data="not_available"),
+                    InlineKeyboardButton("✔️UPLOADED✔️", callback_data=f"uploaded#{reqstr.id}#{k.reply_to_message.text}"),
+                    InlineKeyboardButton("❌Not Available❌", callback_data=f"not_available#{reqstr.id}#{k.reply_to_message.text}"),
                 ],
                 [
                     InlineKeyboardButton("📤Send Message User📤", callback_data="send_message_user")
@@ -154,9 +154,44 @@ async def advantage_spoll_choker(bot, query):
                 text=message_text,
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
-            print(f"This is return query: {k.reply_to_message.text}")
             await asyncio.sleep(10)
             await k.delete()
+
+
+async def handle_uploaded(bot, uploaded_query):
+    _, requester_id, movie = uploaded_query.data.split('#')
+    # Send message to requester
+    await bot.send_message(
+        chat_id=int(requester_id),
+        text=(
+            f"Hi Buddy, I am Vega Movie Searcher Bot. I am messaging you about your "
+            f"<b>query: {movie}</b>. My admin uploaded your movie or series, so now go and "
+            "check it out. Enjoy!"
+        )
+    )
+    
+    # Edit log message
+    await uploaded_query.edit_message_text(
+        text=uploaded_query.message.text + "\n\n✔️ UPLOADED DONE ✔️",
+        reply_markup=None
+    )
+
+async def handle_not_avalable(bot, noavalable_query):
+    _, requester_id, movie = noavalable_query.data.split('#')
+    # Send message to requester
+    await bot.send_message(
+        chat_id=int(requester_id),
+        text=(
+            f"Hi Buddy, I am Vega Movie Searcher Bot. I am messaging you about your "
+            f"<b>query: {movie}</b>. My admin say your query is <b>not avalable</b>, please check about your query is released or not or avalable on the internet"
+        )
+    )
+    
+    # Edit log message
+    await noavalable_query.edit_message_text(
+        text=noavalable_query.message.text + "\n\n❌Not Available❌",
+        reply_markup=None
+    )
 
 
 @Client.on_callback_query()
@@ -306,6 +341,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 parse_mode=enums.ParseMode.MARKDOWN
             )
         return await query.answer('Piracy Is Crime')
+    elif "uploaded" in query.data:
+        await handle_uploaded(client, query)
+    elif "not_available" in query.data:
+        await handle_not_avalable(client, query)
     elif query.data == "backcb":
         await query.answer()
 
