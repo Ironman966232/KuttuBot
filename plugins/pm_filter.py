@@ -9,7 +9,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, AUTH_GROUPS, P_TTI_SHOW_OFF, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, LOG_CHANNEL
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, LOG_CHANNEL, REQST_CONTNT_LOG_CHNL_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -150,7 +150,7 @@ async def advantage_spoll_choker(bot, query):
             ]
             message_text = f"""<b>  🎐🫧🦋🧿💠🌀\n\n# Requested Content\n\n🎬User Query:</b> {k.reply_to_message.text}\n\n🎥Spell Query:</b> {movie}\n\n<b>👥USER ID:</b> {reqstr.id}\n\n<b>⏱️Requested Time:</b> {k.date}\n\n<b>  🎐🫧🦋🧿💠🌀</b>"""
             await bot.send_message(
-                chat_id=LOG_CHANNEL,
+                chat_id=REQST_CONTNT_LOG_CHNL_ID,
                 text=message_text,
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
