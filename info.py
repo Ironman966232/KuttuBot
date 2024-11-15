@@ -45,6 +45,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 # Others
 MAIN_CHNL_USRNM = environ.get("MAIN_CHNL_USRNM", "")
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
+REQST_CONTNT_LOG_CHNL_ID = environ.get("REQST_CONTNT_LOG_CHNL_ID", "")
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'wudixh13')
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', 'True')), False)
 IMDB = is_enabled((environ.get('IMDB', 'False')), True)
