@@ -8,6 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
+from plugins.extra_buttons import extrabtn
 from info import MAIN_CHNL_USRNM, CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT
 from utils import get_settings, get_size, is_req_subscribed, save_group_settings, temp
 from database.connections_mdb import active_connection
@@ -243,12 +244,25 @@ async def start(client, message):
             f_caption=f_caption
     if f_caption is None:
         f_caption = f"{files.file_name}"
+
+    # Fetch buttons from MongoDB
+    button_doc = extrabtn.buttons.find_one({"_id": file_id})  # Assuming buttons are saved with _id = file_id
+    buttons = []
+    if button_doc:
+        for idx in range(1, 11):  # Check for buttons B1_name, B1_value, ..., B10_name, B10_value
+            name = button_doc.get(f"B{idx}_name")
+            value = button_doc.get(f"B{idx}_value")
+            if name and value:
+                buttons.append([InlineKeyboardButton(text=name, url=value)])  # Create inline buttons
+    # Prepare reply markup if buttons exist
+    reply_markup = InlineKeyboardMarkup(buttons) if buttons else None
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
         protect_content=True if pre == 'filep' else False,
-        )
+        reply_markup=reply_markup  # Attach buttons if available
+    )
                     
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
