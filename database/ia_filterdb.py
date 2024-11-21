@@ -37,11 +37,7 @@ async def save_file(media):
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
-    file_name = re.sub(r"@\w+|(_|\-|\.|\+|💥|@Exclusive_Reborn|@MAX_Originals|@Exlusive_Seriess)", "", media.file_name)
-    # Remove extra whitespace
-    caption = media.caption.html if media.caption else None
-    if caption != None:
-        caption = re.sub(r"@\w+|(_|\-|\.|\+|💥|@Exclusive_Reborn|@MAX_Originals|@Exlusive_Seriess)", "", caption)
+    file_name = re.sub(r"@\w+|(_|\-|\.|\+)", " ", str(media.file_name))
     try:
         file = Media(
             file_id=file_id,
