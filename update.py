@@ -5,10 +5,6 @@ from subprocess import run as srun
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
-# Clear log file if it exists
-if ospath.exists('log.txt'):
-    with open('log.txt', 'r+') as f:
-        f.truncate(0)
 
 # Setup logging
 basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s",
