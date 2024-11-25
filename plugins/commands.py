@@ -15,6 +15,9 @@ from database.connections_mdb import active_connection
 import re
 import json
 import base64
+
+import subprocess,signal
+
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
@@ -537,3 +540,30 @@ async def save_template(client, message):
     template = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
+
+@Client.on_message(filters.command("restart") & filters.user(ADMINS))
+async def restart_bot(client, message):
+    # Step 1: Notify the admin about the restart
+    await message.reply("Restarting Bot...", quote=True)
+    
+    # Step 2: Identify the running process
+    try:
+        # Find the process ID (PID) of the running bot
+        result = subprocess.check_output(["pgrep", "-f", "python3 bot.py"], text=True)
+        pid = int(result.strip())
+    except Exception as e:
+        await message.reply(f"Error finding process: {e}", quote=True)
+        return
+    
+    # Step 3: Kill the process
+    try:
+        os.kill(pid, signal.SIGTERM)
+    except Exception as e:
+        await message.reply(f"Error killing process: {e}", quote=True)
+        return
+
+    # Step 4: Restart the `start.sh` script
+    try:
+        subprocess.Popen(["bash", "start.sh"])
+    except Exception as e:
+        await message.reply(f"Error restarting bot: {e}", quote=True)
