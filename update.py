@@ -24,23 +24,6 @@ if ospath.exists('config.env'):
 # Load environment variables
 load_dotenv('config.env', override=True)
 
-try:
-    # Safety check for a specific variable
-    if bool(environ.get('_____REMOVE_THIS_LINE_____')):
-        log_error('The README.md file there to be read! Exiting now!')
-        exit()
-except:
-    pass
-
-# Retrieve environment variables
-BOT_TOKEN = environ.get('BOT_TOKEN', '')
-if len(BOT_TOKEN) == 0:
-    log_error("BOT_TOKEN variable is missing! Exiting now")
-    exit(1)
-
-DATABASE_URI = environ.get('DATABASE_URI', '')
-if len(DATABASE_URI) == 0:
-    DATABASE_URL = None
 
 UPSTREAM_REPO = environ.get('UPSTREAM_REPO', '')
 if len(UPSTREAM_REPO) == 0:
