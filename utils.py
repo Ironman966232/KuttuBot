@@ -40,52 +40,71 @@ class temp(object):
     B_NAME = None
     SETTINGS = {}
 
+from pyrogram.errors import PeerIdInvalid, UserNotParticipant
+import logging
+
+logger = logging.getLogger(__name__)
+
 async def is_req_subscribed(bot, query):
-    # Check if the user has a join request in the database
-    if await db.find_join_req(query.from_user.id):
+    """
+    Check if the user is subscribed to the AUTH_CHANNEL.
+
+    Args:
+        bot: The bot instance.
+        query: The callback query from the user.
+
+    Returns:
+        bool: True if the user is subscribed, False otherwise.
+    """
+    user_id = query.from_user.id
+
+    # Step 1: Check if the user has a join request in the database
+    if await db.find_join_req(user_id):
+        logger.debug(f"User {user_id} has a pending join request.")
         return True
 
-    # Ensure that AUTH_CHANNEL is correctly defined
+    # Step 2: Validate the AUTH_CHANNEL variable
     if not AUTH_CHANNEL:
         logger.error("AUTH_CHANNEL is not set. Please define it in the environment variables.")
         return False
 
-    # Log the AUTH_CHANNEL value for debugging
-    logger.debug(f"AUTH_CHANNEL set to: {AUTH_CHANNEL}")
+    logger.debug(f"AUTH_CHANNEL is set to: {AUTH_CHANNEL}")
 
-    # Test if AUTH_CHANNEL is a valid chat ID by trying to get chat info
+    # Step 3: Test if AUTH_CHANNEL is valid
     try:
         chat_info = await bot.get_chat(AUTH_CHANNEL)
-        logger.debug(f"Successfully retrieved chat info for AUTH_CHANNEL: {chat_info.title}")
+        logger.debug(f"Retrieved chat info for AUTH_CHANNEL: {chat_info.title}")
     except PeerIdInvalid:
-        # Log an error if AUTH_CHANNEL is invalid
-        logger.error(f"Invalid peer ID: AUTH_CHANNEL '{AUTH_CHANNEL}' is not recognized as a valid chat.")
+        logger.error(f"Invalid AUTH_CHANNEL '{AUTH_CHANNEL}': Not recognized as a valid chat ID or username.")
         return False
     except Exception as e:
-        logger.exception(f"Error while testing AUTH_CHANNEL validity: {e}")
+        logger.exception(f"Error validating AUTH_CHANNEL: {e}")
         return False
 
+    # Step 4: Check if the user is a member of AUTH_CHANNEL
     try:
-        # Attempt to retrieve the user as a member of AUTH_CHANNEL
-        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+        user_status = await bot.get_chat_member(AUTH_CHANNEL, user_id)
+        logger.debug(f"User {user_id} status in AUTH_CHANNEL: {user_status.status}")
+        
+        # If the user is banned (kicked), they cannot join
+        if user_status.status == "kicked":
+            logger.warning(f"User {user_id} is banned from AUTH_CHANNEL.")
+            return False
+        
+        return True  # User is a valid member
     except UserNotParticipant:
-        # Handle the case where the user is not a participant
-        pass
+        logger.info(f"User {user_id} is not a participant in AUTH_CHANNEL.")
+        return False
     except PeerIdInvalid:
-        # Handle invalid peer ID error
-        logger.error(f"Invalid peer ID: AUTH_CHANNEL '{AUTH_CHANNEL}' is not a valid chat ID or username.")
+        logger.error(f"Invalid peer ID for AUTH_CHANNEL: '{AUTH_CHANNEL}' is not valid.")
         return False
     except Exception as e:
-        # Log any other exceptions for debugging purposes
-        logger.exception(f"Exception in is_req_subscribed: {e}")
+        logger.exception(f"Error checking subscription for user {user_id}: {e}")
         return False
-    else:
-        # Check if the user is not banned (kicked)
-        if user.status != 'kicked':
-            return True
 
-    # Return False if the user is not subscribed or any error occurs
+    # Default to False if checks fail
     return False
+
 
     
 
