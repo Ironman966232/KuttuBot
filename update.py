@@ -5,7 +5,7 @@ from pkg_resources import working_set
 from requests import get as rget
 from dotenv import load_dotenv, dotenv_values
 from pymongo import MongoClient
-from info import DATABASE_URI
+
 
 if ospath.exists('log.txt'):
     with open('log.txt', 'r+') as f:
@@ -31,9 +31,9 @@ if len(BOT_TOKEN) == 0:
     log_error("BOT_TOKEN variable is missing! Exiting now")
     exit(1)
 
-DATABASE_URL = environ.get('DATABASE_URL', '')
-if len(DATABASE_URL) == 0:
-    DATABASE_URL = None
+DATABASE_URI = environ.get('DATABASE_URI', '')
+if len(DATABASE_URI) == 0:
+    DATABASE_URI = None
 
 
 UPSTREAM_REPO = environ.get('UPSTREAM_REPO', '')
